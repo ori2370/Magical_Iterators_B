@@ -5,15 +5,18 @@
 using namespace ariel;
 using namespace std;
 // Test case for adding elements to the MagicalContainer
-TEST_CASE("Adding elements to MagicalContainer") {
+TEST_CASE("Adding elements to MagicalContainer")
+{
     MagicalContainer container;
 
-    SUBCASE("Adding a single element") {
+    SUBCASE("Adding a single element")
+    {
         container.addElement(10);
         CHECK(container.size() == 1);
     }
 
-    SUBCASE("Adding multiple elements") {
+    SUBCASE("Adding multiple elements")
+    {
         container.addElement(10);
         container.addElement(20);
         container.addElement(30);
@@ -22,17 +25,20 @@ TEST_CASE("Adding elements to MagicalContainer") {
 }
 
 // Test case for removing elements from the MagicalContainer
-TEST_CASE("Removing elements from MagicalContainer") {
+TEST_CASE("Removing elements from MagicalContainer")
+{
     MagicalContainer container;
 
-    SUBCASE("Removing an existing element") {
+    SUBCASE("Removing an existing element")
+    {
         container.addElement(10);
         container.addElement(20);
         CHECK_NOTHROW(container.removeElement(10));
         CHECK(container.size() == 1);
     }
 
-    SUBCASE("Removing a non-existing element") {
+    SUBCASE("Removing a non-existing element")
+    {
         container.addElement(10);
         container.addElement(20);
         CHECK_THROWS_AS(container.removeElement(30), runtime_error);
@@ -41,7 +47,8 @@ TEST_CASE("Removing elements from MagicalContainer") {
 }
 
 // Test case for the AscendingIterator
-TEST_CASE("AscendingIterator") {
+TEST_CASE("AscendingIterator")
+{
     MagicalContainer container;
     container.addElement(10);
     container.addElement(20);
@@ -49,8 +56,8 @@ TEST_CASE("AscendingIterator") {
     container.addElement(15);
     container.addElement(25);
 
-
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::AscendingIterator it(container);
         CHECK(*it == 10);
         ++it;
@@ -65,7 +72,8 @@ TEST_CASE("AscendingIterator") {
         CHECK(it == it.end());
     }
 
-    SUBCASE("Iterating over an empty container") {
+    SUBCASE("Iterating over an empty container")
+    {
         MagicalContainer emptyContainer;
         MagicalContainer::AscendingIterator it(emptyContainer);
         CHECK(it == it.end());
@@ -73,14 +81,16 @@ TEST_CASE("AscendingIterator") {
 }
 
 // Test case for the SideCrossIterator
-TEST_CASE("SideCrossIterator") {
+TEST_CASE("SideCrossIterator")
+{
     MagicalContainer container;
     container.addElement(10);
     container.addElement(20);
     container.addElement(30);
     container.addElement(40);
 
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::SideCrossIterator it(container);
         CHECK(*it == 10);
         ++it;
@@ -93,7 +103,8 @@ TEST_CASE("SideCrossIterator") {
         CHECK(it == it.end());
     }
 
-    SUBCASE("Iterating over an empty container") {
+    SUBCASE("Iterating over an empty container")
+    {
         MagicalContainer emptyContainer;
         MagicalContainer::SideCrossIterator it(emptyContainer);
         CHECK(it == it.end());
@@ -101,7 +112,8 @@ TEST_CASE("SideCrossIterator") {
 }
 
 // Test case for the PrimeIterator
-TEST_CASE("PrimeIterator") {
+TEST_CASE("PrimeIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -110,7 +122,8 @@ TEST_CASE("PrimeIterator") {
     container.addElement(5);
     container.addElement(6);
 
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::PrimeIterator it(container);
         CHECK(*it == 2);
         ++it;
@@ -121,7 +134,8 @@ TEST_CASE("PrimeIterator") {
         CHECK(it == it.end());
     }
 
-    SUBCASE("Iterating over an empty container") {
+    SUBCASE("Iterating over an empty container")
+    {
         MagicalContainer emptyContainer;
         MagicalContainer::PrimeIterator it(emptyContainer);
         CHECK(it == it.end());
@@ -129,13 +143,16 @@ TEST_CASE("PrimeIterator") {
 }
 //--------------------------------------------------------------
 // Test case for comparing iterators from the same container
-TEST_CASE("Comparing iterators from the same container") {
+TEST_CASE("Comparing iterators from the same container")
+{
     MagicalContainer container;
-    for (int i = 1; i <= 10; ++i) {
+    for (int i = 1; i <= 10; ++i)
+    {
         container.addElement(i * 10);
     }
 
-    SUBCASE("Comparing AscendingIterator with itself") {
+    SUBCASE("Comparing AscendingIterator with itself")
+    {
         MagicalContainer::AscendingIterator it1(container);
         MagicalContainer::AscendingIterator it2(container);
         CHECK(it1 == it2);
@@ -144,7 +161,8 @@ TEST_CASE("Comparing iterators from the same container") {
         CHECK(!(it1 > it2));
     }
 
-    SUBCASE("Comparing SideCrossIterator with itself") {
+    SUBCASE("Comparing SideCrossIterator with itself")
+    {
         MagicalContainer::SideCrossIterator it1(container);
         MagicalContainer::SideCrossIterator it2(container);
         CHECK(it1 == it2);
@@ -153,7 +171,8 @@ TEST_CASE("Comparing iterators from the same container") {
         CHECK(!(it1 > it2));
     }
 
-    SUBCASE("Comparing PrimeIterator with itself") {
+    SUBCASE("Comparing PrimeIterator with itself")
+    {
         MagicalContainer::PrimeIterator it1(container);
         MagicalContainer::PrimeIterator it2(container);
         CHECK(it1 == it2);
@@ -164,7 +183,8 @@ TEST_CASE("Comparing iterators from the same container") {
 }
 //------------------------------------------------------
 // Test case for traversing the AscendingIterator
-TEST_CASE("Traversing AscendingIterator") {
+TEST_CASE("Traversing AscendingIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -172,7 +192,8 @@ TEST_CASE("Traversing AscendingIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Iterating in ascending order") {
+    SUBCASE("Iterating in ascending order")
+    {
         MagicalContainer::AscendingIterator it(container);
         CHECK(*it == 1);
         ++it;
@@ -189,7 +210,8 @@ TEST_CASE("Traversing AscendingIterator") {
 }
 
 // Test case for traversing the PrimeIterator
-TEST_CASE("Traversing PrimeIterator") {
+TEST_CASE("Traversing PrimeIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -197,7 +219,8 @@ TEST_CASE("Traversing PrimeIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Iterating over prime elements") {
+    SUBCASE("Iterating over prime elements")
+    {
         MagicalContainer::PrimeIterator it(container);
         CHECK(*it == 2);
         ++it;
@@ -208,7 +231,8 @@ TEST_CASE("Traversing PrimeIterator") {
 }
 
 // Test case for the SideCrossIterator
-TEST_CASE("SideCrossIterator") {
+TEST_CASE("SideCrossIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -216,7 +240,8 @@ TEST_CASE("SideCrossIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Iterating in side-cross order from start to end") {
+    SUBCASE("Iterating in side-cross order from start to end")
+    {
         MagicalContainer::SideCrossIterator it(container);
 
         CHECK(*it == 1);
@@ -234,7 +259,8 @@ TEST_CASE("SideCrossIterator") {
 }
 //-------------------------------------------------------
 // Test case for comparing AscendingIterator
-TEST_CASE("Comparing AscendingIterator") {
+TEST_CASE("Comparing AscendingIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -242,7 +268,8 @@ TEST_CASE("Comparing AscendingIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Comparing iterators after increments") {
+    SUBCASE("Comparing iterators after increments")
+    {
         MagicalContainer::AscendingIterator it1(container);
         MagicalContainer::AscendingIterator it2(container);
 
@@ -303,9 +330,9 @@ TEST_CASE("Comparing AscendingIterator") {
     }
 }
 
-
 // Test case for comparing PrimeIterator
-TEST_CASE("Comparing PrimeIterator") {
+TEST_CASE("Comparing PrimeIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -313,7 +340,8 @@ TEST_CASE("Comparing PrimeIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Comparing iterators after increments") {
+    SUBCASE("Comparing iterators after increments")
+    {
         MagicalContainer::PrimeIterator it1(container);
         MagicalContainer::PrimeIterator it2(container);
 
@@ -351,9 +379,9 @@ TEST_CASE("Comparing PrimeIterator") {
     }
 }
 
-
 // Test case for comparing SideCrossIterator
-TEST_CASE("Comparing SideCrossIterator") {
+TEST_CASE("Comparing SideCrossIterator")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -361,7 +389,8 @@ TEST_CASE("Comparing SideCrossIterator") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Comparing iterators after increments") {
+    SUBCASE("Comparing iterators after increments")
+    {
         MagicalContainer::SideCrossIterator itStart1(container);
         MagicalContainer::SideCrossIterator itStart2(container);
 
@@ -390,7 +419,8 @@ TEST_CASE("Comparing SideCrossIterator") {
     }
 }
 //---------------------------------------------------
-TEST_CASE("Iterator Increment Beyond End") {
+TEST_CASE("Iterator Increment Beyond End")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -398,23 +428,27 @@ TEST_CASE("Iterator Increment Beyond End") {
     container.addElement(5);
     container.addElement(14);
 
-    SUBCASE("Ascending Iterator") {
+    SUBCASE("Ascending Iterator")
+    {
         MagicalContainer::AscendingIterator it(container);
 
         // Increment until the end
-        while (it != it.end()) {
+        while (it != it.end())
+        {
             ++it;
         }
-    
+
         // Attempt to increment beyond the end
         CHECK_THROWS_AS(++it, runtime_error);
     }
 
-    SUBCASE("Prime Iterator") {
+    SUBCASE("Prime Iterator")
+    {
         MagicalContainer::PrimeIterator it(container);
 
         // Increment until the end
-        while (it != it.end()) {
+        while (it != it.end())
+        {
             ++it;
         }
 
@@ -422,11 +456,13 @@ TEST_CASE("Iterator Increment Beyond End") {
         CHECK_THROWS_AS(++it, runtime_error);
     }
 
-    SUBCASE("SideCross Iterator") {
+    SUBCASE("SideCross Iterator")
+    {
         MagicalContainer::SideCrossIterator it(container);
 
         // Increment until the end
-        while (it != it.end()) {
+        while (it != it.end())
+        {
             ++it;
         }
 
@@ -434,8 +470,9 @@ TEST_CASE("Iterator Increment Beyond End") {
         CHECK_THROWS_AS(++it, runtime_error);
     }
 }
-//checking that the iterators dont impact each other
-TEST_CASE("Multiple Iterators Test") {
+// checking that the iterators dont impact each other
+TEST_CASE("Multiple Iterators Test")
+{
     MagicalContainer container;
     container.addElement(1);
     container.addElement(2);
@@ -447,7 +484,8 @@ TEST_CASE("Multiple Iterators Test") {
     container.addElement(8);
     container.addElement(9);
 
-    SUBCASE("Ascending Iterators") {
+    SUBCASE("Ascending Iterators")
+    {
         MagicalContainer::AscendingIterator it1(container);
         MagicalContainer::AscendingIterator it2(container);
 
@@ -460,7 +498,8 @@ TEST_CASE("Multiple Iterators Test") {
         CHECK(*it1 == 6);
     }
 
-    SUBCASE("SideCross Iterators") {
+    SUBCASE("SideCross Iterators")
+    {
         MagicalContainer::SideCrossIterator it1(container);
         MagicalContainer::SideCrossIterator it2(container);
 
@@ -475,7 +514,8 @@ TEST_CASE("Multiple Iterators Test") {
         CHECK(*it2 == 3);
     }
 
-    SUBCASE("Prime Iterators") {
+    SUBCASE("Prime Iterators")
+    {
         MagicalContainer::PrimeIterator it1(container);
         MagicalContainer::PrimeIterator it2(container);
 
@@ -491,7 +531,8 @@ TEST_CASE("Multiple Iterators Test") {
     }
 }
 // Test case for the AscendingIterator with negative and positive numbers
-TEST_CASE("AscendingIterator with Negative and Positive Numbers") {
+TEST_CASE("AscendingIterator with Negative and Positive Numbers")
+{
     MagicalContainer container;
     container.addElement(-3);
     container.addElement(5);
@@ -504,7 +545,8 @@ TEST_CASE("AscendingIterator with Negative and Positive Numbers") {
     container.addElement(2);
     container.addElement(1);
 
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::AscendingIterator it(container);
         CHECK(*it == -4);
         ++it;
@@ -531,7 +573,8 @@ TEST_CASE("AscendingIterator with Negative and Positive Numbers") {
 }
 
 // Test case for the PrimeIterator with no prime numbers in the container
-TEST_CASE("PrimeIterator with No Prime Numbers") {
+TEST_CASE("PrimeIterator with No Prime Numbers")
+{
     MagicalContainer container;
     container.addElement(4);
     container.addElement(6);
@@ -540,7 +583,8 @@ TEST_CASE("PrimeIterator with No Prime Numbers") {
     container.addElement(10);
     container.addElement(12);
 
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::PrimeIterator it(container);
 
         CHECK(it == it.end());
@@ -549,19 +593,23 @@ TEST_CASE("PrimeIterator with No Prime Numbers") {
 }
 
 // Test case for the SideCrossIterator with a single element in the container
-TEST_CASE("SideCrossIterator with Single Element") {
+TEST_CASE("SideCrossIterator with Single Element")
+{
     MagicalContainer container;
     container.addElement(100);
 
-    SUBCASE("Iterating over elements") {
+    SUBCASE("Iterating over elements")
+    {
         MagicalContainer::SideCrossIterator it(container);
+
         CHECK(*it == 100);
         ++it;
         CHECK(it == it.end());
     }
 }
 
-TEST_CASE("operator= throws when iterators are pointing at different containers") {
+TEST_CASE("operator= throws when iterators are pointing at different containers")
+{
     MagicalContainer container1;
     MagicalContainer container2;
 
@@ -571,29 +619,27 @@ TEST_CASE("operator= throws when iterators are pointing at different containers"
 
     container2.addElement(4);
     container2.addElement(5);
-    container2.addElement(6);    
+    container2.addElement(6);
 
-   SUBCASE("AscendingIterator")
-   {
+    SUBCASE("AscendingIterator")
+    {
         MagicalContainer::AscendingIterator it1(container1);
         MagicalContainer::AscendingIterator it2(container2);
 
         CHECK_THROWS_AS(it1 = it2, std::runtime_error);
-   }
-   SUBCASE("SideCrossIterator")
-   {
+    }
+    SUBCASE("SideCrossIterator")
+    {
         MagicalContainer::SideCrossIterator it1(container1);
         MagicalContainer::SideCrossIterator it2(container2);
 
         CHECK_THROWS_AS(it1 = it2, std::runtime_error);
-   }
-   SUBCASE("AscendingIterator")
-   {
+    }
+    SUBCASE("AscendingIterator")
+    {
         MagicalContainer::PrimeIterator it1(container1);
         MagicalContainer::PrimeIterator it2(container2);
 
         CHECK_THROWS_AS(it1 = it2, std::runtime_error);
-   }
+    }
 }
-
-
